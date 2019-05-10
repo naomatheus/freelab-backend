@@ -35,12 +35,25 @@ app.use(cors(corsOptions));
 
 // Require the controller after middleware
 
+const authController = require('./controllers/authController');
+const userController  = require('./controllers/user');
+const brandStatementController = require('./controllers/brandStatementController');
+const loginController = require('./controllers/loginController')
+const githubJobs = require('./controllers/githubJobsController')
 
+app.use('/auth', authController);
+app.use('/login', loginController);
+app.use('/brandStatementController', brandStatementController);
+app.use('/user', userController);
+
+// require controllers
+
+// API // 
+app.use('/api/v1/githubJobs', githubJobsController)
+// API // 
 
 
 /// listener
-
-
 
 app.listen(PORT, () => {
 	console.log('server listening on port', PORT);
