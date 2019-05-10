@@ -1,0 +1,22 @@
+{
+  "name": "freelab-express-api",
+  "version": "1.0.0",
+  "description": "may project 1 sei ga",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "matthew k robinson",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "chai-http": "^4.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-session": "^1.16.1",
+    "mocha": "^6.1.4",
+    "mongoose": "^5.5.7",
+    "superagent": "^5.0.5"
+  }
+}
