@@ -6,11 +6,11 @@
 -- Creates a new user
 -- Expects Parameters 
 1. username 
-2. password (optional)
-3. zipCode (optional)
-4. skill (optional)
-5. industry (optional)
-6. email (optional)
+2. password 
+3. zipCode 
+4. skill 
+5. industry 
+6. email 	(optional)
 7. userPrefs (optional)
 8. statements (optional)
 
