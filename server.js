@@ -9,7 +9,6 @@ const session = require('express-session');
 require('./db/db');
 // require DB
 
-
 // middle ware 
 const PORT = 3000;
 
@@ -22,7 +21,7 @@ app.use(session({
 app.use(bodyParser.urlencoded({
 	extended: false
 }))
-app.use(bodyPareser.json());
+app.use(bodyParser.json());
 
 const corsOptions = {
 	origin: 'http://localhost:3000',
@@ -36,10 +35,10 @@ app.use(cors(corsOptions));
 // Require the controller after middleware
 
 const authController = require('./controllers/authController');
-const userController  = require('./controllers/user');
+const userController  = require('./controllers/userController');
 const brandStatementController = require('./controllers/brandStatementController');
 const loginController = require('./controllers/loginController')
-const githubJobs = require('./controllers/githubJobsController')
+const githubJobsController = require('./controllers/githubJobsController')
 
 app.use('/auth', authController);
 app.use('/login', loginController);

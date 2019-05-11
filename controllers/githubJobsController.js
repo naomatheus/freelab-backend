@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const githubJobs = require('../models/githubJobs');
+const githubJob = require('../models/githubJob');
 // does not yet exist
 
 /// creating the route that gets jobs from the github jobs api
@@ -51,3 +51,5 @@ router.delete('/', async (req, res) => {
 
 
 /// delete route for githubJobsController 
+
+module.exports = router;

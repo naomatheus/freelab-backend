@@ -43,3 +43,5 @@ router.delete('/', async (req, res) => {
 })
 
 /// delete route for authController 
+
+module.exports = router;

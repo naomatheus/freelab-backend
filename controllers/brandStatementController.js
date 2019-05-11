@@ -48,3 +48,6 @@ router.delete('/', async (req, res) => {
 
 
 /// delete route for githubJobsController 
+
+
+module.exports = router;
