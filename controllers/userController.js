@@ -29,7 +29,6 @@ router.get('/', async (req, res, next) => {
 
 /// post route for userController 
 
-
 // has the create action 
 router.post('/', async (req, res, next) => {
 	
