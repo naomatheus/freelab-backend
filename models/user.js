@@ -9,8 +9,14 @@ const UserSchema = new mongoose.Schema({
 	skill: String,
 	industry: String,
 	email: String,
-	userPrefs :String /*{Actually will be another model}*/,
-	statements: String
+	userPrefs : {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'UserPreference'
+	}
+	statements: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'BrandStatement'
+	}
 })
 
 
