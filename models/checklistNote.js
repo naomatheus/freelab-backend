@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const checklistNoteSchema = new mongoose.Schema({
-	date: Date,
+	date: String,
 	body: String
 })
 

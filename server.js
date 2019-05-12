@@ -38,6 +38,7 @@ app.use(cors(corsOptions));
 const authController = require('./controllers/authController');
 const userController  = require('./controllers/userController');
 const brandStatementController = require('./controllers/brandStatementController');
+const checklistNoteController = require('./controllers/checklistNoteController')
 const loginController = require('./controllers/loginController')
 const githubJobsController = require('./controllers/githubJobsController')
 
@@ -45,6 +46,7 @@ app.use('/auth', authController);
 app.use('/login', loginController);
 app.use('/brandstatement', brandStatementController);
 app.use('/user', userController);
+app.use('/checklistnote', checklistNoteController);
 
 // require controllers
 

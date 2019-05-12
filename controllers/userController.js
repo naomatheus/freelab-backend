@@ -94,7 +94,6 @@ router.delete('/:id', async(req, res, next) => {
 
 })
 
-
 /// delete route for userController
 
 module.exports = router;
