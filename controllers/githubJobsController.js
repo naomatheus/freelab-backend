@@ -2,12 +2,52 @@ const express = require('express');
 const router = express.Router();
 
 const githubJob = require('../models/githubJob');
-// does not yet exist
+const superagent = require('superagent');
+const fetch = require('node-fetch');
 
 /// creating the route that gets jobs from the github jobs api
 
-router.get('', async (req, res) => {
-	
+router.get('/', async (req, res, next) => {
+	/// this calls the github jobs api and searches for freelance developer
+	console.log('the jobs api route is getting hit');
+
+
+	try {
+
+		const rawJobs = await fetch('https://jobs.github.com/positions.json', {
+				method: 'GET'
+		})
+
+		const allJobs = await rawJobs.json();
+		console.log(allJobs);
+		await res.send({
+			status: 200,
+			data: allJobs
+		})
+
+		
+
+
+	} catch (err){
+		next(err)
+	}
+
+
+
+
+	// superagent.get('https://jobs.github.com/positions.json?description=freelance+developer')
+	// .then((data) => {
+	// 	res.json({
+	// 		status: 200,
+	// 		data: JSON.parse(data)
+	// 	})
+	// }).catch((err) => {
+		
+	// 	res.json({
+	// 		status: 400,
+	// 		error: err
+	// 	})
+	// })
 })
 
 /// get route for githubJobsController
