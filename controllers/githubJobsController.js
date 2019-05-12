@@ -8,46 +8,28 @@ const fetch = require('node-fetch');
 /// creating the route that gets jobs from the github jobs api
 
 router.get('/', async (req, res, next) => {
-	/// this calls the github jobs api and searches for freelance developer
+	/// this calls the github jobs api and searches for remote jobs because there are not many jobs by any single location
+	// referenced: https://stackoverflow.com/questions/49841983/node-fetch-problems-with-post-requests
 	console.log('the jobs api route is getting hit');
 
 
 	try {
 
-		const rawJobs = await fetch('https://jobs.github.com/positions.json', {
+		const rawJobs = await fetch('https://jobs.github.com/positions.json?utf8=%E2%9C%93&description=&location=remote', {
 				method: 'GET'
 		})
 
-		const allJobs = await rawJobs.json();
-		console.log(allJobs);
+		const allRemoteJobs = await rawJobs.json();
+		console.log(allRemoteJobs);
 		await res.send({
 			status: 200,
-			data: allJobs
+			data: allRemoteJobs
 		})
-
-		
-
 
 	} catch (err){
 		next(err)
 	}
 
-
-
-
-	// superagent.get('https://jobs.github.com/positions.json?description=freelance+developer')
-	// .then((data) => {
-	// 	res.json({
-	// 		status: 200,
-	// 		data: JSON.parse(data)
-	// 	})
-	// }).catch((err) => {
-		
-	// 	res.json({
-	// 		status: 400,
-	// 		error: err
-	// 	})
-	// })
 })
 
 /// get route for githubJobsController
