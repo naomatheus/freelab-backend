@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const userPreferenceSchema = new mongoose.Schema({
 
+
+	name: String,
 	designer: {
 		designerillustrator: Boolean,
 		branding: Boolean,
@@ -10,7 +12,7 @@ const userPreferenceSchema = new mongoose.Schema({
 		retail: Boolean,
 		packagedesign: Boolean,
 		ux: Boolean
-	}
+	},
 	developer: {
 		frontend: Boolean,
 		backend: Boolean,

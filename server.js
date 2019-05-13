@@ -41,12 +41,17 @@ const brandStatementController = require('./controllers/brandStatementController
 const checklistNoteController = require('./controllers/checklistNoteController')
 const loginController = require('./controllers/loginController')
 const githubJobsController = require('./controllers/githubJobsController')
+const userPreferenceController = require('./controllers/userPreferenceController');
+
 
 app.use('/auth', authController);
 app.use('/login', loginController);
 app.use('/brandstatement', brandStatementController);
 app.use('/user', userController);
 app.use('/checklistnote', checklistNoteController);
+
+app.use('/userPreference', userPreferenceController);
+
 
 // require controllers
 
