@@ -20,7 +20,7 @@ const userPreferenceSchema = new mongoose.Schema({
 		ui: Boolean,
 		data: Boolean
 	},
-	step2: {
+	bizType: {
 		llc: Boolean,
 		scorp: Boolean,
 		dba: Boolean,

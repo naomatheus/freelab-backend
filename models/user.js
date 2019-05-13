@@ -13,7 +13,7 @@ const UserSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'UserPreference'
 	}],
-	statements: [{
+	brandStatements: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'BrandStatement'
 	}]
