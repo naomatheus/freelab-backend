@@ -1,13 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
+const bcrypt = require('bcryptjs');
 
 // require User model
 const User = require('../models/user');
 // require User model
 
+
 /// get route for authController
-
-
 /// has a get action 
 router.get('/login', async (req, res, next) => {
 	
@@ -17,10 +20,7 @@ router.get('/login', async (req, res, next) => {
 		status: 200,
 		data: 'here is the login get route'
 	})
-
-
 })
-
 /// get route for authController
 
 
@@ -28,6 +28,7 @@ router.get('/login', async (req, res, next) => {
 router.post('/login', async (req, res) => {
 
 	req.session.username = req.body.username;
+
 	req.session.password = req.body.password
 	req.session.email = req.body.email
 	req.session.zipCode = req.body.zipCode
@@ -55,37 +56,51 @@ router.post('/register', async (req, res, next) => {
 	
 	console.log('registration route being hit');
 
-	// will check to see if the username already exists
-	const queriedUsername = await User.findOne({username: req.body.username});
-	if (queriedUsername){
-		console.log(`Username ${queriedUsername} already exists`);
-
-		req.session.loggedIn = false;
-
-		res.json({
-			status: 200,
-			data: 'username already exists and login should be prevented',
-			credentials: 'include'
-		})
-	} else {
-		console.log('moving on to try block');	
-	}
-
 	try {
 
-		const createdUser = await User.create(req.body);
+		// will check to see if the username already exists
+		const queriedUsername = await User.findOne({username: req.body.username});
+		if (queriedUsername){
+			console.log(`Username ${queriedUsername} already exists`);
 
-		console.log(createdUser, "<-- this user was created by the registration route in auth controller");
-		// will add the user's database _id to their session 
-		req.session.usersDbId = createdUser._id
+			req.session.loggedIn = false;
 
-		console.log(req.session, '<-- this session should have database Id appended');
+			res.json({
+				status: 200,
+				data: 'username already exists and register should be prevented unless dif username',
+				credentials: 'include'
+			})
+		} else {
+			console.log('moving on to hash the password block');	
+			// hash the password entered by this user
+			const password = req.body.password
+			const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+			// the hashed password is what we want to put in the dB
 
-		res.json({
-			status: 200,
-			data: createdUser,
-			credentials:'include'
-		})
+			// create an object for the db entry
+			const userDbEntry = {};
+			userDbEntry.username = req.body.username;
+			userDbEntry.password = hashedPassword;
+
+			// the properties of this object should match up with the User model
+		
+			const createdUser = await User.create(req.body);
+			// const createdUser = await User.create(userDbEntry)
+			// ^^ failed when I changed the create param to userDbEntry. Will include all of the other properties from the model and req.body?
+
+			console.log(createdUser, "<-- this user was created by the registration route in auth controller");
+			// will add the user's database _id to their session 
+			req.session.usersDbId = createdUser._id
+			createdUser.password = hashedPassword
+
+			console.log(req.session, '<-- this session should have database Id appended');
+
+			res.json({
+				status: 200,
+				data: createdUser,
+				credentials:'include'
+			})
+		}
 
 	} catch (err){
 		next(err)

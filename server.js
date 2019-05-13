@@ -5,8 +5,8 @@ const cors = require('cors');
 const session = require('express-session');
 const superagent = require('superagent');
 const methodOverride = require('method-override');
+const bcrypt = require('bcryptjs');
 
-// HAS BCRYPT
 // HAS SERVE STATIC
  
 
