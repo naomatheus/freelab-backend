@@ -35,14 +35,14 @@ router.post('/register', async (req, res, next) => {
 			const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 			// the hashed password is what we want to put in the dB
 
-	// DO NOT NEED?
+	// WHY NEED?
 			// create an object for the db entry
 			const userDbEntry = {};
 			userDbEntry.name = req.body.name
 			userDbEntry.username = req.body.username;
 			userDbEntry.password = hashedPassword;
 			userDbEntry.zipCode = req.body.zipCode
-	// DO NOT NEED?
+	// WHY NEED?
 
 			// the properties of this object should match up with the User model
 		

@@ -20,13 +20,19 @@ const userPreferenceSchema = new mongoose.Schema({
 		ui: Boolean,
 		data: Boolean
 	},
+	// enum --- 
+
+
 	bizType: {
-		llc: Boolean,
-		scorp: Boolean,
-		dba: Boolean,
-		soleproprietor: Boolean
+		type: String,
+		enum: ['LLC', 'S Corp', 'dba', 'soleproprietor']
+		// llc: Boolean,
+		// scorp: Boolean,
+		// dba: Boolean,
+		// soleproprietor: Boolean
 	}
 })
 
 
 module.exports = mongoose.model('UserPreference', userPreferenceSchema);
+
