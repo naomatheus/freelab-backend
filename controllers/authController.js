@@ -37,8 +37,9 @@ router.post('/login', async (req, res) => {
 
 	res.json({
 		status: 200,
-		data: req.session
-
+		data: req.session,
+		credentials: 'include',
+		otherData: 'log in worked'
 	})
 
 	// res.redirect('/');
@@ -55,6 +56,20 @@ router.post('/register', async (req, res, next) => {
 	console.log('registration route being hit');
 
 	// will check to see if the username already exists
+	const queriedUsername = await User.findOne({username: req.body.username});
+	if (queriedUsername){
+		console.log(`Username ${queriedUsername} already exists`);
+
+		req.session.loggedIn = false;
+
+		res.json({
+			status: 200,
+			data: 'username already exists and login should be prevented',
+			credentials: 'include'
+		})
+	} else {
+		console.log('moving on to try block');	
+	}
 
 	try {
 
@@ -78,9 +93,38 @@ router.post('/register', async (req, res, next) => {
 
 })
 
-
-
 /// POST Registration route for authController
+
+/// GET Logout route for authController
+
+// destroys the user session/ends the session
+
+router.get('/logout', (req, res, next) => {
+	
+	req.session.destroy((err) => {
+		
+		if(err){
+			res.json({
+				status: 400,
+				data: err,
+				credentials: 'include',
+				message: 'there was an issue with logout'
+			})
+		} else {
+			res.json({
+				status: 200,
+				data: 'logout successful',
+				credentials: 'include'
+			})
+		}
+	})
+
+
+})
+
+
+
+/// GET Logout route for authController
 
 
 /// update route for authController
