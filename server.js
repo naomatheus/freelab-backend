@@ -4,17 +4,25 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const superagent = require('superagent')
+
+// HAS ENV
+// HAS BCRYPT
+// HAS SERVE STATIC
+// HAS METHOD OVERRIDE 
+
 /// node modules
 
-// require DB
+// require dot env and DB
+require('dotenv').config();
 require('./db/db');
+
 // require DB
 
 // middle ware 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 app.use(session({
-	secret: 'nasndjansdlajndjlnalsd',
+	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: false
 }))
@@ -63,5 +71,5 @@ app.use('/api/v1/githubJobs', githubJobsController)
 /// listener
 
 app.listen(PORT, () => {
-	console.log('server listening on port', PORT);
+	console.log('server listening on port (env)');
 })

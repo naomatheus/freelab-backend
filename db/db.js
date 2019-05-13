@@ -1,9 +1,11 @@
 // This is where we will set up our db connection
 const mongoose = require('mongoose');
 
+const connectionString = process.env.MONGODB_URI
+
 // freelab is the name of our database
 // that is automatically created
-mongoose.connect('mongodb://localhost/freelab', {
+mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false
@@ -11,12 +13,12 @@ mongoose.connect('mongodb://localhost/freelab', {
 
 mongoose.connection.on('connected', () => {
   console.log('Mongoose is connected')
-});
+}, connectionString);
 
 mongoose.connection.on('error', (err) => {
   console.log(err, ' mongoose failed to connect')
 });
 
-mongoose.connection.on('disconncted', () => {
+mongoose.connection.on('disconnected', () => {
   console.log('Mongoose is disconnected')
-});
+}, connectionString);
