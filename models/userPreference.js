@@ -1,3 +1,5 @@
+/// MAY NO LONGER NEED 
+
 const mongoose = require('mongoose');
 
 const userPreferenceSchema = new mongoose.Schema({
@@ -25,7 +27,7 @@ const userPreferenceSchema = new mongoose.Schema({
 
 	bizType: {
 		type: String,
-		enum: ['LLC', 'S Corp', 'dba', 'soleproprietor']
+		enum: ['LLC', 'S Corp', 'DBA', 'Sole Proprietor']
 		// llc: Boolean,
 		// scorp: Boolean,
 		// dba: Boolean,
@@ -36,3 +38,4 @@ const userPreferenceSchema = new mongoose.Schema({
 
 module.exports = mongoose.model('UserPreference', userPreferenceSchema);
 
+/// MAY NO LONGER NEED 

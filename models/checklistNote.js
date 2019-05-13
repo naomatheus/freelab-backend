@@ -1,3 +1,6 @@
+
+// probably no longer need 
+
 const mongoose = require('mongoose');
 
 const checklistNoteSchema = new mongoose.Schema({
@@ -22,6 +25,8 @@ const checklistNoteSchema = new mongoose.Schema({
 
 
 module.exports = mongoose.model('ChecklistNote', checklistNoteSchema);
+
+// probably no longer need 
 
 
 

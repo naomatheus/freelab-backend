@@ -53,11 +53,17 @@ router.post('/', async (req, res, next) => {
 /// update route for userController
 
 // has put action
-router.put('/:id', async (req, res, next) => {
+router.patch('/:id', async (req, res, next) => {
 	
 	try {
 
 		const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
+
+/// THIS route will include an object(key) function that checks the values of the user document properties and updates them if the route is hit
+
+	
+
+//// put that here 
 
 		res.json({
 			status: 200,
