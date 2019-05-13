@@ -68,11 +68,12 @@ router.post('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
 	// this URL needs to be edited to include the id of the user AND the id of the user preference 
+	// could be /:userId/:id where :id is the userPref to be updated, and :userID is the ID of the user document
 	try {
 
 		const updatedUserPreference = await UserPreference.findByIdAndUpdate(req.params.id, req.body, {new: true})
 
-		const updatedUser = User.findByIdAndUpdate(req.params.id);
+		const updatedUser = await User.findByIdAndUpdate(req.params.id);
 
 		console.log(updatedUserPreference, '<--- 	this is createdUserPreference');
 
@@ -80,9 +81,15 @@ router.put('/:id', async (req, res, next) => {
 
 		console.log(updatedUser.userPrefs, "<--- this is updated.user prefs");
 
-		// console.log(placeForPreference, '<--this is placeForPreference');
+		const placeForPreference = updatedUser.userPrefs
 
-		// placeForPreference.push(createdUserPreference);
+		console.log(placeForPreference, '<--this is placeForPreference');
+
+		placeForPreference.push(updatedUserPreference);
+
+		updatedUser.save();
+
+		console.log(updatedUser, 'this is updated user after the push and save');
 
 		res.json({
 			status: 200,
