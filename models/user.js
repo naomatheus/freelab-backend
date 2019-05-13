@@ -6,8 +6,8 @@ const UserSchema = new mongoose.Schema({
 	username: {type: String, required: true},
 	password: {type: String, required: true},
 	zipCode: {type: Number, required: true},
-	skill: String,
-	email: String,
+	skill: {type:String, required:false},
+	email: {type: String, required:false},
 	userPrefs : [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'UserPreference'
