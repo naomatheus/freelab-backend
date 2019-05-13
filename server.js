@@ -3,12 +3,12 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
-const superagent = require('superagent')
+const superagent = require('superagent');
+const methodOverride = require('method-override');
 
-// HAS ENV
 // HAS BCRYPT
 // HAS SERVE STATIC
-// HAS METHOD OVERRIDE 
+ 
 
 /// node modules
 
@@ -53,7 +53,7 @@ const userPreferenceController = require('./controllers/userPreferenceController
 
 
 app.use('/auth', authController);
-app.use('/login', loginController);
+// app.use('/login', loginController);
 app.use('/brandstatement', brandStatementController);
 app.use('/user', userController);
 app.use('/checklistnote', checklistNoteController);
