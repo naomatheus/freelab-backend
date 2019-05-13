@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
 	brandStatements: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'BrandStatement'
+	}],
+	checkListItems: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'ChecklistNote'	
 	}]
 })
 
