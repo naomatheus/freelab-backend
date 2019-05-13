@@ -7,7 +7,6 @@ const UserSchema = new mongoose.Schema({
 	password: {type: String, required: true},
 	zipCode: {type: Number, required: true},
 	skill: String,
-	industry: String,
 	email: String,
 	userPrefs : [{
 		type: mongoose.Schema.Types.ObjectId,

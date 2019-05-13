@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const UserPreference = require('../models/userPreference');
+const User = require('../models/user')
 
 /// get route for userPreferenceController
 /// has a get action 
@@ -28,7 +29,7 @@ router.get('/', async (req, res, next) => {
 
 /// POST route for userPreferenceController
 // has a create action
-router.post('/', async (req, res, next) => {
+router.post('/:id', async (req, res, next) => {
 	
 	console.log('creating a set of user preferences');
 
@@ -36,11 +37,17 @@ router.post('/', async (req, res, next) => {
 
 		const createdUserPreference = await UserPreference.create(req.body);
 
-		// const foundUser = User.findById(req.params.id);
-		await console.log(createdUserPreference);
-		// const placeForPreference = foundUser.userPrefs
+		const foundUser = User.findById(req.params.id);
+		console.log(createdUserPreference, '<--- 	this is createdUserPreference');
 
-		// placeForPreference.push(createdUserPreference);
+		console.log(foundUser, '<-- THIS IS FOUND USER');
+
+		console.log(foundUser.userPrefs, "<--- this is foundUser.user prefs");
+
+		console.log(placeForPreference, '<--this is placeForPreference');
+
+		placeForPreference.push(createdUserPreference);
+
 
 		res.json({
 			status: 200,
@@ -57,11 +64,25 @@ router.post('/', async (req, res, next) => {
 /// PUT route for userPreferenceController
 
 // has update action
+
+
 router.put('/:id', async (req, res, next) => {
-	
+	// this URL needs to be edited to include the id of the user AND the id of the user preference 
 	try {
 
 		const updatedUserPreference = await UserPreference.findByIdAndUpdate(req.params.id, req.body, {new: true})
+
+		const updatedUser = User.findByIdAndUpdate(req.params.id);
+
+		console.log(updatedUserPreference, '<--- 	this is createdUserPreference');
+
+		console.log(updatedUser, '<-- THIS IS updated USER');
+
+		console.log(updatedUser.userPrefs, "<--- this is updated.user prefs");
+
+		// console.log(placeForPreference, '<--this is placeForPreference');
+
+		// placeForPreference.push(createdUserPreference);
 
 		res.json({
 			status: 200,
