@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const userPreferenceSchema = new mongoose.Schema({
 
 
-	name: String,
+	name: String /*will eventually be the assigned user*/,
 	designer: {
 		designerillustrator: Boolean,
 		branding: Boolean,
