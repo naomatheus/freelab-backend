@@ -16,7 +16,8 @@ const UserSchema = new mongoose.Schema({
 	// 	ref: 'UserPreference'
 	// }],
 
-	// brandStatements: [BrandStatement.schema],
+	brandStatements: [BrandStatement.schema],
+	
 	brandStatement: {
 		check: Boolean,
 		notes: String
