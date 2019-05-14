@@ -123,7 +123,8 @@ router.post('/login', async (req, res, next) => {
 					status: 200,
 					data: req.session,
 					credentials: 'include',
-					otherData: 'log in worked'
+					otherData: 'log in worked',
+					loginData: req.session.loggedIn
 				})
 
 

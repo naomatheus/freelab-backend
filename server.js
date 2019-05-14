@@ -33,8 +33,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 const corsOptions = {
-	origin: 'http://localhost:3000',
-	credentials: 'include',
+	origin: 'http://localhost:3001',
+	credentials: true,
 	optionsSuccessStatus:200
 }
 

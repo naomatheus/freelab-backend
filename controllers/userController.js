@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
 		res.json({
 			status: 200,
 			data: allUsers,
-			credentials:'include'
+			credentials: 'include'
 		})
 
 	} catch (err){
