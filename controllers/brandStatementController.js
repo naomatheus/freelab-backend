@@ -29,7 +29,7 @@ router.get('/', async (req, res, next) => {
 /// post route for brandStatementsController 
 
 // has the create action 
-router.patch('user/:id/', async (req, res, next) => {
+router.post('user/:id/', async (req, res, next) => {
 	
 	try {
 

@@ -45,7 +45,7 @@ app.use(cors(corsOptions));
 
 const authController = require('./controllers/authController');
 const userController  = require('./controllers/userController');
-const brandStatementController = require('./controllers/brandStatementController');
+// const brandStatementController = require('./controllers/brandStatementController');
 // const checklistNoteController = require('./controllers/checklistNoteController')
 // const loginController = require('./controllers/loginController')
 const githubJobsController = require('./controllers/githubJobsController')
