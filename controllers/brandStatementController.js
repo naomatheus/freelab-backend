@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const BrandStatement = require('../models/brandStatement')
+const User = require('../models/user')
 
 /// get route for brandStatementsController
 /// has a get action 
@@ -28,17 +29,25 @@ router.get('/', async (req, res, next) => {
 /// post route for brandStatementsController 
 
 // has the create action 
-router.post('/', async (req, res, next) => {
+router.patch('user/:id/', async (req, res, next) => {
 	
 	try {
 
 		const createdBrandStatement = await BrandStatement.create(req.body)
+
 
 		res.json({
 			status: 200,
 			data: createdBrandStatement,
 			credentials: 'include'
 		})
+
+		const foundUser = await User.findOne({'username':req.body.username})
+
+		console.log(createdBrandStatement, "<-- this is the createdBrandStatement");
+		console.log(foundUser, '<-- this is foundUser by username ');
+
+		// foundUser.brandstatements.push(createdBrandStatement)
 
 	} catch (err){
 

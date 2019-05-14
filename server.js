@@ -54,7 +54,8 @@ const githubJobsController = require('./controllers/githubJobsController')
 
 app.use('/auth', authController);
 // app.use('/login', loginController);
-app.use('/brandstatement', brandStatementController);
+// app.use('/brandstatement', brandStatementController);
+
 app.use('/user', userController);
 // app.use('/checklistnote', checklistNoteController);
 

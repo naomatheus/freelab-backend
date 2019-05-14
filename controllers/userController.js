@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose')
 const User = require('../models/user');
-
+const BrandStatement = require('../models/brandStatement')
 
 /// get route for userController
 
@@ -78,8 +78,6 @@ router.patch('/:id', async (req, res, next) => {
 
 /// update route for userController
 
-
-
 /// delete route for userController 
 // has a delete action 
 router.delete('/:id', async(req, res, next) => {
@@ -101,5 +99,45 @@ router.delete('/:id', async(req, res, next) => {
 })
 
 /// delete route for userController
+
+/// route for Patching the brandStatement subdocument of User docs
+
+router.patch('/:id/brandStatement', async (req, res, next) => {
+	
+	console.log('brandstatement route getting hit in the user controller');
+
+	try {
+
+		const createdBrandStatement = await BrandStatement.create(req.body)
+
+
+		res.json({
+			status: 200,
+			data: createdBrandStatement,
+			credentials: 'include'
+		})
+
+		const foundUser = await User.findByIdAndUpdate(req.params.id);
+
+		console.log(createdBrandStatement, "<-- this is the createdBrandStatement");
+		console.log(foundUser, '<-- this is foundUser by id ');
+
+		foundUser.brandStatements.push(createdBrandStatement)
+
+		console.log(foundUser, '<-- this is foundUser by ID after pushing brandstatement into subdocument');
+
+	} catch (err){
+
+		next(err)
+	}
+
+})
+
+
+
+
+/// route for Patching the brandStatement subdocument of User docs
+
+
 
 module.exports = router;
